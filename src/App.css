@@ -1,0 +1,7 @@
+.app-container {
+   
+    min-height: 100vh;
+    padding: 0;
+    margin: 0; /* Ensure the container takes up at least the full viewport height */
+  }
+  
