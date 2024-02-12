@@ -16,7 +16,6 @@ const WeatherApp = () => {
     const [isDivVisible, setIsDivVisible] = useState(false);
 
     const handleChange = (e) => {
-      console.log(e);
       if(e.target.value==''){
         setIsDivVisible(false);
       }
@@ -24,7 +23,6 @@ const WeatherApp = () => {
   };
 
   const handleClick=()=>{
-      console.log(change);
       setCity(change);
       setIsDivVisible(true);
   }
@@ -43,7 +41,6 @@ const WeatherApp = () => {
      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=7774fc7f74b1b10b204bf1783df36c40`)
      .then((res)=>{
         const response = res.data;
-        console.log(response.weather[0].icon);
         setCityName(response.name);
         setCityIcon(response.weather[0].icon);
         setWeatherType(response.weather[0].main);
@@ -59,7 +56,7 @@ const WeatherApp = () => {
        setTemperature(res.data.main.temp)
      })
      .catch((err)=>{
-         console.log(err);
+         return err;
      })
    
       }}, [city,setIsDivVisible]);
