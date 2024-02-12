@@ -38,7 +38,7 @@ const WeatherApp = () => {
     useEffect(() => {
         
         if(city){
-     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=7774fc7f74b1b10b204bf1783df36c40`)
+     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid={YOUR_API_KEY}`)
      .then((res)=>{
         const response = res.data;
         setCityName(response.name);
@@ -49,7 +49,7 @@ const WeatherApp = () => {
         const latitude=response.coord.lat;
         const longitude=response.coord.lon;
 
-        return axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=7774fc7f74b1b10b204bf1783df36c40&units=metric`);
+        return axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid={Your_API_KEY}&units=metric`);
      })
      .then((res)=>{
     
