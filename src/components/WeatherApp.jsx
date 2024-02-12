@@ -3,8 +3,9 @@ import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import axios from 'axios';
 import { divStyle, textStyle } from './constants';
+
 const WeatherApp = () => {
-  
+    const YOUR_API_KEY="";
     const[cityName,setCityName]=useState();
     const[cityIcon,setCityIcon]=useState();
     const[weatherType,setWeatherType]=useState();
@@ -38,7 +39,7 @@ const WeatherApp = () => {
     useEffect(() => {
         
         if(city){
-     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid={YOUR_API_KEY}`)
+     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${YOUR_API_KEY}`)
      .then((res)=>{
         const response = res.data;
         setCityName(response.name);
@@ -49,7 +50,7 @@ const WeatherApp = () => {
         const latitude=response.coord.lat;
         const longitude=response.coord.lon;
 
-        return axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid={Your_API_KEY}&units=metric`);
+        return axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${YOUR_API_KEY}&units=metric`);
      })
      .then((res)=>{
     
