@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import axios from 'axios';
+import { divStyle, textStyle } from './constants';
 const WeatherApp = () => {
   
     const[cityName,setCityName]=useState();
@@ -13,42 +14,35 @@ const WeatherApp = () => {
     const[city,setCity]=useState();
     const[change,setChange]=useState();
     const [isDivVisible, setIsDivVisible] = useState(false);
+
+    const handleChange = (e) => {
+      console.log(e);
+      if(e.target.value==''){
+        setIsDivVisible(false);
+      }
+      setChange(e.target.value);
+  };
+
+  const handleClick=()=>{
+      console.log(change);
+      setCity(change);
+      setIsDivVisible(true);
+  }
+
     if(city == ""){
       setIsDivVisible(false);
       return;
     }
-    const divStyle = {
-        backgroundColor: '#f0f0f0',
-        padding: '20px',
-        borderRadius: '10px',
-        boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
-        textAlign: 'center',
-        maxWidth: '300px',
-        margin: 'auto',
-        marginTop: '50px',
-      };
+   
+       
     
-      const imgStyle = {
-        width: '50px',
-        height: '50px',
-        marginBottom: '10px',
-      };
-      const textStyle = {
-        fontSize: '16px',
-        fontWeight: 'bold',
-        color: '#333',
-        marginBottom: '5px',
-        fontStyle: 'italic',
-        fontWeight: 'normal',
-      };
     
     useEffect(() => {
-        console.log(city);
+        
         if(city){
      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=7774fc7f74b1b10b204bf1783df36c40`)
      .then((res)=>{
         const response = res.data;
-        console.log(response);
         console.log(response.weather[0].icon);
         setCityName(response.name);
         setCityIcon(response.weather[0].icon);
@@ -70,18 +64,7 @@ const WeatherApp = () => {
    
       }}, [city,setIsDivVisible]);
 
-      const handleChange = (e) => {
-        console.log(e);
-        if(e.target.value==''){
-          setIsDivVisible(false);
-        }
-        setChange(e.target.value);
-    };
-    const handleClick=()=>{
-        console.log(change);
-        setCity(change);
-        setIsDivVisible(true);
-    }
+   
     
   return (
     <div>
